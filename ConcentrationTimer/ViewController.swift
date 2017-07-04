@@ -19,44 +19,68 @@ class ViewController: UIViewController {
     //タイマー値のステッパー
     @IBOutlet weak var timeStepper: UIStepper!
     
-    //タイマー値
-    var time : Float = 0.0
+    //MAXタイマー値
+    var maxTime : Int = 100000
+    
+    //現在のタイマー値
+    var currentTime : Int = 0
+    
+    //プログレスバー値
+    var bar: Float = 0.0
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     
     //ステッパーがタップされた時に呼び出されるメソッド
     @IBAction func StepperClicked(_ sender: UIStepper) {
         let num = Int (sender.value)
+        
+        //ラベルのフィールドを更新
         timeLabel.text = String(num)
+        //MAXタイマー値の更新
+        maxTime = num
     }
     
     
+    
     //Startボタン押下で実行されるメソッド
+    //ここの実装が難しい
     @IBAction func startButton(_ sender: Any) {
+        currentTime = 0
         
         //タイマー値がテキストフィールドに格納されている数値を超えるまで繰り返す
-        while Float(timeLabel.text!)! > time {
+        while (maxTime >= currentTime) {
             
-            //60秒SLEEPした処理を実行する
-            DispatchQueue.main.asyncAfter(deadline: .now() + 60.0) {
-                //タイマー値のインクリメント
-                self.time = self.time + 1.0
-                
-                //プログレスバーの更新
-                let bar = (Float(timeLabel.text!)! - self.time) / (Float(timeLabel.text!)!)
-                timeBar.progress = Float(bar)
+            
+            //乱数生成
+            for i in 0...10 {
+                let random = arc4random()
+                print(random)
+                print(i)
             }
+            
+            //プログレスバーの更新
+            bar = Float(currentTime / maxTime)
+            timeBar.setProgress(bar, animated: false)
+            timeBar.progress = bar
+            
+            //現在のタイマー値をインクリメント
+            currentTime = currentTime + 1
         }
+        
+        //タイマ値の初期化
+        currentTime = 0
+        bar = 0.0
+        timeBar.setProgress(bar, animated: false)
+        
     }
     
 }

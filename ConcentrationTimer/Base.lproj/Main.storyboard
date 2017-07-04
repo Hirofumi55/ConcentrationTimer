@@ -30,16 +30,16 @@
                                     <action selector="startButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FDY-BT-X5e"/>
                                 </connections>
                             </button>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="1" translatesAutoresizingMaskIntoConstraints="NO" id="U0f-n6-UbI">
-                                <rect key="frame" x="16" y="283" width="288" height="2"/>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" translatesAutoresizingMaskIntoConstraints="NO" id="U0f-n6-UbI">
+                                <rect key="frame" x="16" y="282.5" width="288" height="2.5"/>
                             </progressView>
-                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="60" maximumValue="360" stepValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="gNO-AY-d7v">
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="100000" maximumValue="1000000" stepValue="100000" translatesAutoresizingMaskIntoConstraints="NO" id="gNO-AY-d7v">
                                 <rect key="frame" x="113" y="421" width="94" height="29"/>
                                 <connections>
                                     <action selector="StepperClicked:" destination="BYZ-38-t0r" eventType="valueChanged" id="zAa-A4-Icn"/>
                                 </connections>
                             </stepper>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="60" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="otj-4S-cbK">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="otj-4S-cbK">
                                 <rect key="frame" x="16" y="200.5" width="288" height="32.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
