@@ -19,8 +19,8 @@ class ViewController: UIViewController {
     //タイマー値のステッパー
     @IBOutlet weak var timeStepper: UIStepper!
     
-    //MAXタイマー値
-    var maxTime : Int = 100000
+    //終了タイマー値
+    var maxTime : Int = 60 * 60
     
     //現在のタイマー値
     var currentTime : Int = 0
@@ -32,6 +32,17 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //タイマーの生成
+        Timer.scheduledTimer(
+            //繰り返す間隔
+            timeInterval: 1.0,
+            target: self,
+            //実行するメソッド
+            selector: #selector(self.step),
+            userInfo: nil,
+            repeats: true
+        )
     }
     
     override func didReceiveMemoryWarning() {
@@ -45,42 +56,28 @@ class ViewController: UIViewController {
         
         //ラベルのフィールドを更新
         timeLabel.text = String(num)
-        //MAXタイマー値の更新
-        maxTime = num
+        
+        //終了タイマー値の更新
+        maxTime = num * 60
+        
     }
-    
     
     
     //Startボタン押下で実行されるメソッド
-    //ここの実装が難しい
     @IBAction func startButton(_ sender: Any) {
         currentTime = 0
+    }
+    
+    func step() {
+        currentTime = currentTime + 1
         
-        //タイマー値がテキストフィールドに格納されている数値を超えるまで繰り返す
-        while (maxTime >= currentTime) {
-            
-            
-            //乱数生成
-            for i in 0...10 {
-                let random = arc4random()
-                print(random)
-                print(i)
-            }
-            
+        if maxTime > currentTime {
             //プログレスバーの更新
             bar = Float(currentTime / maxTime)
             timeBar.setProgress(bar, animated: false)
-            timeBar.progress = bar
+            //timeBar.progress = bar
+        } else {
             
-            //現在のタイマー値をインクリメント
-            currentTime = currentTime + 1
         }
-        
-        //タイマ値の初期化
-        currentTime = 0
-        bar = 0.0
-        timeBar.setProgress(bar, animated: false)
-        
     }
-    
 }
